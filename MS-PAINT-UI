@@ -5722,44 +5722,25 @@ function Library:CreateWindow(WindowInfo)
     end
 
 if Library.IsMobile then
-    -- Reference to your main UI frame, replace with your actual frame variable
-    local MainUIFrame = --[[ your main UI frame here ]]--
-
-    -- Create the toggle button with initial label "Open"
-    local ToggleButton = Library:AddDraggableButton("Open", function(self)
-        -- Toggle visibility
-        local isVisible = MainUIFrame.Visible
-        MainUIFrame.Visible = not isVisible
-
-        -- Change button label accordingly
-        if MainUIFrame.Visible then
-            self:SetText("Close")
-        else
-            self:SetText("Open")
-        end
+    local ToggleButton = Library:AddDraggableButton("JX", function()
+        Library:Toggle()
     end)
 
-    -- Uncomment if you want a lock button
+    -- Remove or comment out the lock button creation
     -- local LockButton = Library:AddDraggableButton("Lock", function(self)
     --     Library.CantDragForced = not Library.CantDragForced
     --     self:SetText(Library.CantDragForced and "Unlock" or "Lock")
     -- end)
 
     if WindowInfo.MobileButtonsSide == "Right" then
-        -- Position toggle button on the right
         ToggleButton.Button.Position = UDim2.new(1, -6, 0, 6)
         ToggleButton.Button.AnchorPoint = Vector2.new(1, 0)
 
-        -- Uncomment if you want to position lock button
+        -- Remove or comment out lock button positioning
         -- LockButton.Button.Position = UDim2.new(1, -6, 0, 46)
     else
-        -- Position toggle button on the left (add your positioning code here)
-        -- For example:
-        -- ToggleButton.Button.Position = UDim2.new(0, 6, 0, 6)
-        -- ToggleButton.Button.AnchorPoint = Vector2.new(0, 0)
-
-        -- Uncomment if you want to position lock button
-        -- LockButton.Button.Position = UDim2.new(0, 6, 0, 46)
+        -- And its position
+        -- LockButton.Button.Position = UDim2.fromOffset(6, 46)
     end
 end
 
