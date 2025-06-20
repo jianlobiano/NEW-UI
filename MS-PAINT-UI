@@ -5721,7 +5721,7 @@ function Library:CreateWindow(WindowInfo)
         task.spawn(Library.Toggle)
     end
 
-if Library.IsMobile then
+    if Library.IsMobile then
     local ToggleButton = Library:AddDraggableButton("JX", function()
         Library:Toggle()
     end)
