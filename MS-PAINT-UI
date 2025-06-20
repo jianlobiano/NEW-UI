@@ -5721,13 +5721,18 @@ function Library:CreateWindow(WindowInfo)
         task.spawn(Library.Toggle)
     end
 
- if Library.IsMobile then
+if Library.IsMobile then
+    -- Reference to your main UI frame, replace with your actual frame variable
+    local MainUIFrame = --[[ your main UI frame here ]]--
+
     -- Create the toggle button with initial label "Open"
     local ToggleButton = Library:AddDraggableButton("Open", function(self)
-        -- Toggle the state
-        self.isOpen = not self.isOpen
-        -- Update the button text based on the state
-        if self.isOpen then
+        -- Toggle visibility
+        local isVisible = MainUIFrame.Visible
+        MainUIFrame.Visible = not isVisible
+
+        -- Change button label accordingly
+        if MainUIFrame.Visible then
             self:SetText("Close")
         else
             self:SetText("Open")
@@ -5752,7 +5757,7 @@ function Library:CreateWindow(WindowInfo)
         -- For example:
         -- ToggleButton.Button.Position = UDim2.new(0, 6, 0, 6)
         -- ToggleButton.Button.AnchorPoint = Vector2.new(0, 0)
-        
+
         -- Uncomment if you want to position lock button
         -- LockButton.Button.Position = UDim2.new(0, 6, 0, 46)
     end
